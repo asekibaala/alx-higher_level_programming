@@ -1,35 +1,57 @@
 #!/usr/bin/python3
+"""Class Square defines a square"""
+
+
 class Square:
-    """ A class that defines a square by its size
+    """This class defines a square.
+
+    This class has no public attributes.
+
     """
     def __init__(self, size=0):
-        """ Method to initialize the square object
-        """
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
-        elif size < 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = size
+        """This method initiates a square.
 
-    def area(self):
-        """ Method that returns the square are of the object
+        Args:
+            size (int): This defines the size of the square.
+                The size is validated in the setter method.
+
         """
-        return (self.__size ** 2)
+        try:
+            self.__size = size
+            if size < 0:
+                raise ValueError
+            if type(size) is not int:
+                raise TypeError
+        except TypeError:
+            raise TypeError("size must be an integer")
+        except ValueError:
+            raise ValueError("size must be >= 0")
 
     @property
     def size(self):
-        """ Method to returns the size value
-        """
+        """This method retrieves the size of a square."""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """ Method to set the size value of the square object
+        """This method sets the size of a square.
+
+        Args:
+            size (int): This defines the size of the square.
+                The size is validated with try/except.
+
         """
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
-        else:
+        try:
             self.__size = value
+            if value < 0:
+                raise ValueError
+            if type(value) is not int:
+                raise TypeError
+        except TypeError:
+            raise TypeError("size must be an integer")
+        except ValueError:
+            raise ValueError("size must be >= 0")
+
+    def area(self):
+        """int: Return area of square."""
+        return self.__size * self.__size
